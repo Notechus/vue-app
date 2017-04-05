@@ -1,4 +1,4 @@
-export class Websock {
+export class ChatWebsock {
   constructor(url, onOpen, onMessage, onClose) {
     this.websock = new WebSocket("ws://" + url);
     this.websock.onopen = onOpen;

@@ -1,13 +1,17 @@
 <template>
-  <div id="chatControls">
-    <input v-model="message">
-    <p>{{ message }}</p>
-    <button v-on:click="sendMessage">Send</button>
+  <div id="chatControls" class="row">
+    <div class="col-md-4">
+      <input class="form-control" v-model="message">
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-default" v-on:click="send">Send</button>
+    </div>
   </div>
 </template>
 
 <script>
-  import Websock from '../services/websock.js';
+  import {mapMutations, mapGetters} from 'vuex';
+
   export default {
     data() {
       return {
@@ -15,9 +19,17 @@
       }
     },
     methods: {
-      sendMessage: function () {
-        if (Websock.isConnected()) Websock.send(this.message);
+      send: function () {
+        this.$store.commit('sendMessage', this.message);
+        this.message = '';
       }
-    }
+    },
+    computed: mapGetters({
+      websock: 'websock'
+    })
   }
 </script>
+
+<style>
+
+</style>

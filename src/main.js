@@ -9,7 +9,5 @@ Vue.config.debug = process.env.NODE_ENV !== 'production';
 const App = new Vue({
   store,
   el: '#app',
-  components: {
-    app
-  },
+  render: h => h(app)
 });

@@ -1,28 +1,30 @@
 <template>
-  <ul id="userlist">
-    <li v-for="user in userList" :key="user.id">{{ user.username }}</li>
-  </ul>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Connected Users</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li v-for="user in users">{{ user.username }}</li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
+  import {mapGetters} from 'vuex'
 
   export default {
-    computed: {
-      ...mapGetters(['users'])
-    }
+    computed: mapGetters({
+      users: 'users'
+    })
   }
 </script>
 
 <style>
   #userlist {
-    position: fixed;
-    left: 50%;
     list-style: none;
-    margin-left: 250px;
     background: #f0f0f9;
     padding: 5px 10px;
-    width: 150px;
-    top: 11px;
   }
 </style>
